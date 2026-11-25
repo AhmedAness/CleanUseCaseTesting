@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import mobi.foo.cleanusecase.common.Resource
 import mobi.foo.cleanusecase.domain.usecases.CoinUseCase
-import mobi.foo.cleanusecase.presentation.coins.CoinsListState
 
 @HiltViewModel
 class CoinsViewModel @Inject constructor(private val useCase: CoinUseCase) : ViewModel() {
@@ -34,7 +33,7 @@ class CoinsViewModel @Inject constructor(private val useCase: CoinUseCase) : Vie
                 }
 
                 is Resource.Error -> {
-                    _vmState.value = CoinsListState(error = "")
+                    _vmState.value = CoinsListState(error = it.message ?: "An unexpected error occurred")
                 }
             }
         }.launchIn(viewModelScope)

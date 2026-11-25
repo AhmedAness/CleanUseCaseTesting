@@ -9,8 +9,6 @@ import mobi.foo.cleanusecase.common.Constants
 import mobi.foo.cleanusecase.data.remote.CoinPapricaAPI
 import mobi.foo.cleanusecase.data.repository.CoinRepositoryImpl
 import mobi.foo.cleanusecase.domain.repository.CoinRepository
-import mobi.foo.cleanusecase.domain.usecases.CoinDetailsUseCase
-import mobi.foo.cleanusecase.domain.usecases.CoinUseCase
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -33,17 +31,4 @@ class AppModule {
     fun provideCoinRepository(api: CoinPapricaAPI): CoinRepository {
         return CoinRepositoryImpl(api)
     }
-
-    @Provides
-    @Singleton
-    fun provideCoinsUseCase(coinRepository: CoinRepository): CoinUseCase {
-        return CoinUseCase(coinRepository)
-    }
-
-    @Provides
-    @Singleton
-    fun provideCoinDetailsUseCase(coinRepository: CoinRepository): CoinDetailsUseCase {
-        return CoinDetailsUseCase(coinRepository)
-    }
-
 }

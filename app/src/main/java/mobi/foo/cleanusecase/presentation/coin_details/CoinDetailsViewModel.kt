@@ -41,7 +41,7 @@ class CoinDetailsViewModel @Inject constructor(
                 }
 
                 is Resource.Error -> {
-                    _vmState.value = CoinsDetailsState(error = "")
+                    _vmState.value = CoinsDetailsState(error = it.message ?: "An unexpected error occurred")
                 }
             }
         }.launchIn(viewModelScope)
